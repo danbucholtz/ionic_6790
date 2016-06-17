@@ -1,8 +1,8 @@
 var app = (function () {
   'use strict';
-  
+
   var module = angular.module('myApp', ['ionic']);
-  
+
   module.run(moduleRun);
   moduleRun.$inject = ['$ionicPlatform', '$rootScope'];
   function moduleRun($ionicPlatform, $rootScope) {
@@ -40,7 +40,7 @@ var app = (function () {
           }
         }
       })
-    
+
       /* All tabs with their own navigation stack */
       .state('app.tab.home', {
         url: '/home',
@@ -60,7 +60,7 @@ var app = (function () {
           }
         }
       })
-      .state('app.tab.contact.detail', {
+      .state('app.tab.contactDetail', {
         url: '/contact',
         views: {
           'tab-contact@app.tab': {
@@ -96,98 +96,102 @@ var app = (function () {
           }
         }
       });
-    
+
     $urlRouterProvider.otherwise(function ($injector) {
       $injector.get('$state').go('login');
     });
   }
-  
+
   module.controller('LoginController', LoginController);
   LoginController.$inject = ['$scope'];
   function LoginController($scope) {
     console.log('LoginController');
   }
-  
+
   module.controller('LogoutController', LogoutController);
   LogoutController.$inject = ['$scope', '$state'];
   function LogoutController($scope, $state) {
     console.log('LogoutController');
     $state.go('login');
   }
-  
+
   module.controller('NavBarController', NavBarController);
   NavBarController.$inject = ['$scope'];
   function NavBarController($scope) {
     console.log('NavBarController');
   }
-  
+
   module.controller('SideMenuController', SideMenuController);
   SideMenuController.$inject = ['$scope'];
   function SideMenuController($scope) {
     console.log('SideMenuController');
   }
-  
+
   module.controller('TabsController', TabsController);
   TabsController.$inject = ['$scope'];
   function TabsController($scope) {
     console.log('TabsController');
   }
-  
+
   module.controller('HomeController', HomeController);
   HomeController.$inject = ['$scope'];
   function HomeController($scope) {
     console.log('HomeController');
   }
-  
+
   module.controller('ContactController', ContactController);
   ContactController.$inject = ['$scope'];
   function ContactController($scope) {
     console.log('ContactController');
-        
+
     $scope.$on("$ionicView.afterLeave", function(event, data){
        // handle event
        console.log("$ionicView.afterLeave is FIRED from ContactController!");
     });
-    
+
     $scope.$on("$ionicParentView.afterLeave", function(event, data){
        // handle event
-       console.log("$ionicParentView.afterLeave is FIRED from ContactController!");
+       //console.log("$ionicParentView.afterLeave is FIRED from ContactController!");
     });
   }
-  
+
   module.controller('ContactDetailController', ContactDetailController);
   ContactDetailController.$inject = ['$scope'];
   function ContactDetailController($scope) {
     console.log('ContactDetailController');
-        
+
     $scope.$on("$ionicView.afterLeave", function(event, data){
        // handle event
        console.log("$ionicView.afterLeave is FIRED from ContactDetailController!");
     });
-    
+
     $scope.$on("$ionicParentView.afterLeave", function(event, data){
        // handle event
-       console.log("$ionicParentView.afterLeave is FIRED from ContactDetailController!");
+       //console.log("$ionicParentView.afterLeave is FIRED from ContactDetailController!");
     });
   }
-  
+
   module.controller('ChatController', ChatController);
   ChatController.$inject = ['$scope'];
   function ChatController($scope) {
     console.log('ChatController');
   }
-  
+
   module.controller('HistoryController', HistoryController);
   HistoryController.$inject = ['$scope'];
   function HistoryController($scope) {
     console.log('HistoryController');
+
+    $scope.$on("$ionicView.enter", function(event, data){
+      console.log("History view entered");
+    });
   }
-  
+
   module.controller('SettingController', SettingController);
   SettingController.$inject = ['$scope'];
   function SettingController($scope) {
     console.log('SettingController');
   }
-  
+
   return module;
 })();
